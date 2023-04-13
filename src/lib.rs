@@ -10,11 +10,11 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new() -> Result<Config, &'static str> {
+    pub fn new() -> Result<Config,Box<dyn Error>> {
         let args:Vec<String> = env::args().collect();
 
         if args.len() < 3 {
-            return Err("Not enough arguments");
+            return Err("Not enough arguments".into());
         }
         let file_path = args[1].clone();
         let message = args[2].clone();

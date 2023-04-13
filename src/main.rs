@@ -1,5 +1,3 @@
-use std::fs;
-use std::io::Write;
 use demos_service_logger::*;
 
 fn main() {
@@ -7,10 +5,10 @@ fn main() {
     // [x] Creating a lib module
     // [x] Migrate the env args functionality to the lib module
     // [x] Make sure that the lib module is able to handle the arguments
-    // [] Migrate the file handler to the lib module
-    // [] Make sure that the lib module is able to handle the file
-    // [] Error handling
-    // [] Testing that everything works
+    // [x] Migrate the file handler to the lib module
+    // [x] Make sure that the lib module is able to handle the file
+    // [x] Error handling
+    // [x] Testing that everything works
 
     
 
@@ -21,7 +19,10 @@ fn main() {
         }
     );
 
-    config.write_to_file().unwrap()
+    if let Err(e) = config.write_to_file() {
+        println!("Error: {}",e);
+        std::process::exit(1);
+    }
 
 
     
